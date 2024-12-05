@@ -47,6 +47,7 @@
     display: flex;
     cursor: pointer;
     position: relative;
+    z-index: 10;
 }
 
 .dropdown-button:hover {
@@ -59,15 +60,12 @@
     flex-direction: column;
     align-items: center;
     background-color: rgb(255, 255, 255);
-    top: 120%;
-    height: fit-content;
-    left: -15%;
-    right: 0;
+    top: 0%;
     border-radius: 20px;
     border: 1px solid black;
-    height: auto;
     box-shadow: 1px 8px 10px rgba(0, 0, 0, 0.138);
-    padding: 10px 20px 10px 10px;
+    padding: 40px 20px 10px 10px;
+    z-index: 1;
 }
 
 .dropdown-menu:hover {
@@ -104,9 +102,18 @@
 }
 
 .dropdown-menu-item:hover img {
-    filter: contrast(0%) brightness(2);
+    filter: contrast(0%) brightness(2); 
 }
 
 .dropdown:hover .dropdown-menu {
     display: flex;
+}
+
+.button-link {
+    text-decoration: none;
+    color: black;
+}
+
+.button-link:hover {
+    color: white;
 }

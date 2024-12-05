@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML, CSS Projects</title>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    
+    <!-- STYLES -->
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/nav.css">
+    <link rel="stylesheet" href="styles/login-form.css">
+
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,615;1,14..32,615&family=Syne:wght@400..800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!--Navigation bar-->
+    <div id="nav-placeholder">
+    </div>
+
+    <script>
+    $(function(){
+    $("#nav-placeholder").load("nav.html");
+    });
+    </script>
+    <!--end of Navigation bar-->
+
+    <div class="container">
+
+        <div class="image-container">
+            <img class="image-element" src="media/images/image-login-form.jpg" alt="">
+            <div class="image-logo"></div>
+            <button class="image-button"></button>
+            <p class="image-heading"></p>
+            <div class="image-progress">
+            </div>
+        </div>
+
+        <div class="content-container">
+            <div class="heading"></div>
+            <div class="sub-heading"></div>
+            <div class="name">
+                <input type="text" class="first-name">
+                <input type="text" class="last-name">
+            </div>
+            <input type="email" class="email">
+            <div class="password-container">
+                <input type="password" class="password">
+            </div>
+            <div class="condition">
+                <input type="checkbox" name="" id="">
+                <p class="terms">I agree to the <a href="Terms & Conditions."></a></p>
+            </div>
+            <button class="button-create">Create account</button>
+            <div class="divider">
+                <div class="line"></div>
+                <p class="divider-text">Or register with</p>
+                <div class="line"></div>
+            </div>
+            <div class="buttons-social">
+                <button class="button-google">
+                    <img src="" alt="">
+                    Google
+                </button>
+                <button class="button-apple">
+                    <img src="" alt="">
+                    Apple
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+
+
+</body>
+</html>
