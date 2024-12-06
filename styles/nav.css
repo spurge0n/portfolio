@@ -4,20 +4,24 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    background: linear-gradient(45deg, #efefef, #ffffff, #F6F6F6, #ffffff, #e9e9e9);
+    background: transparent;
     border-radius: 50px;
-    border: 2px solid rgb(225, 225, 225);
+    border: none;
     align-items: center;
     padding: 12px 14px;
 }
 
-.logo {
+.logo-text {
+    text-decoration: none;
+    color: black;
     font-family: "Syne", sans-serif;
     font-weight: 800;
     font-size: 18px;
   }
 
 .logo-style {
+    font-family: "Syne", sans-serif;
+    font-weight: 800;
     color: red;
     animation: logo-colors 5s infinite;
 }
