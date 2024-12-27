@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,615;1,14..32,615&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- END OF FONTS -->
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles/survey-form.css" />
+    <title>Survey form</title>
+  </head>
+  <body>
+    <header>
+        <h2 class="logo">Spurgeon C</h2>
+        <nav></nav>
+      </header>
+    <div id="container">
+      <h1 id="title">Cat parent survey</h1>
+      <p id="description">
+        Share your experiences with your furry friend so we can continue
+        creating a purrfect world for cats (and their humans!).
+      </p>
+      <form
+        action="https://register-demo.freecodecamp.org"
+        method="get"
+        id="survey-form"
+      >
+        <fieldset>
+          <label for="name" id="name-label" class="heading"
+            >Your name
+            <input
+              id="name"
+              type="text"
+              placeholder="Please enter your full name"
+              name="name"
+              required
+          /></label>
+          <label for="name-cat" id="name-label-cat" class="heading"
+            >Your cat's name
+            <input
+              id="name-cat"
+              type="text"
+              placeholder="Please enter your cat's full name"
+              name="name-of-cat"
+              required
+          /></label>
+          <label for="email" id="email-label" class="heading"
+            >Your email address
+            <input
+              id="email"
+              type="email"
+              placeholder="johndoe@gmail.com"
+              name="email"
+              required
+          /></label>
+          <label for="number" id="number-label" class="heading"
+            >Your age
+            <input
+              id="number"
+              type="number"
+              min="18"
+              max="75"
+              required
+              placeholder="Age"
+              name="age"
+          /></label>
+          <label for="number-cat" id="number-label-cat" class="heading"
+            >Your cat's age
+            <input
+              id="number-cat"
+              type="number"
+              min="1"
+              max="25"
+              required
+              placeholder="Age"
+              name="age-cat"
+          /></label>
+        </fieldset>
+
+        <fieldset>
+          <label for="dropdown" class="heading"
+            >What breed is your cat?<select id="dropdown" name="breed">
+              <option disabled selected value="">Select a breed</option>
+              <option value="Abyssinian">Abyssinian</option>
+              <option value="American Bobtail">American Bobtail</option>
+              <option value="American Cuarl">American Curl</option>
+              <option value="American Shorthair">American Shorthair</option>
+              <option value="American Wirehair">American Wirehair</option>
+              <option value="Balinese">Balinese</option>
+              <option value="Bengal">Bengal</option>
+              <option value="Birman">Birman</option>
+              <option value="Bombay">Bombay</option>
+              <option value="British Shorthair">British Shorthair</option>
+              <option value="Burmese">Burmese</option>
+              <option value="Chartreux">Chartreux</option>
+              <option value="Cornish Rex">Cornish Rex</option>
+              <option value="Devon Rex">Devon Rex</option>
+              <option value="Egyptian Mau">Egyptian Mau</option>
+              <option value="Exotic Shorthair">Exotic Shorthair</option>
+              <option value="Havana Brown">Havana Brown</option>
+              <option value="Himalayan">Himalayan</option>
+              <option value="Japanese Bobtail">Japanese Bobtail</option>
+              <option value="Javanese">Javanese</option>
+              <option value="Korat">Korat</option>
+              <option value="LaPerm">LaPerm</option>
+              <option value="Maine Coon">Maine Coon</option>
+              <option value="Manx">Manx</option>
+              <option value="Munchkin">Munchkin</option>
+              <option value="Nebelung">Nebelung</option>
+              <option value="Norwegian Forest Cat">Norwegian Forest Cat</option>
+              <option value="Ocicat">Ocicat</option>
+              <option value="Oriental Shorthair">Oriental Shorthair</option>
+              <option value="Persian">Persian</option>
+              <option value="Peterbald">Peterbald</option>
+              <option value="Pixie-bob">Pixie-bob</option>
+              <option value="Ragdoll">Ragdoll</option>
+              <option value="Russian Blue">Russian Blue</option>
+              <option value="Scottish Fold">Scottish Fold</option>
+              <option value="Selkirk Rex">Selkirk Rex</option>
+              <option value="Siamese">Siamese</option>
+              <option value="Siberian">Siberian</option>
+              <option value="Singapura">Singapura</option>
+              <option value="Somali">Somali</option>
+              <option value="Sphynx">Sphynx</option>
+              <option value="Tonkinese">Tonkinese</option>
+              <option value="Turkish Angora">Turkish Angora</option>
+              <option value="Turkish Van">Turkish Van</option>
+            </select></label
+          >
+        </fieldset>
+
+        <fieldset>
+          <legend class="heading">Is your cat vaccinated?</legend>
+
+          <label for="radio-yes">
+            <input
+              name="vaccination"
+              class="inline"
+              id="radio-yes"
+              type="radio"
+              value="yes"
+              checked
+            />
+            Yes
+          </label>
+
+          <label for="radio-no">
+            <input
+              name="vaccination"
+              class="inline"
+              id="radio-no"
+              type="radio"
+              value="no"
+            />
+            No
+          </label>
+        </fieldset>
+
+        <fieldset>
+          <legend>What are your cat's favourite treats?</legend>
+          <label for="treat-one">
+            <input
+              class="inline"
+              type="checkbox"
+              name="treats"
+              value="tuna"
+              id="treat-one"
+              checked
+            />
+            Tuna
+          </label>
+          <label for="treat-two">
+            <input
+              type="checkbox"
+              class="inline"
+              name="treats"
+              value="yogurt"
+              id="treat-two"
+            />
+            Yogurt
+          </label>
+          <label for="treat-three">
+            <input
+              type="checkbox"
+              class="inline"
+              name="treats"
+              value="catnip"
+              id="treat-three"
+            />
+            Catnip
+          </label>
+        </fieldset>
+
+        <fieldset>
+          <label for="picture"
+            >Upload a picture of your cat
+            <input type="file" name="picture" id="picture" />
+          </label>
+          <label for="info"
+            >Tell us more about your cat.
+            <textarea id="info" name="details" rows="3" cols="45"></textarea>
+          </label>
+        </fieldset>
+        <input type="submit" value="submit" id="submit" />
+      </form>
+    </div>
+    <footer>Designed and developed by Spurgeon C.</footer>
+  </body>
+</html>
