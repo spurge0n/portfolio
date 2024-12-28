@@ -1,5 +1,5 @@
 body {
-    font-size: 12px;
+    font-size: 14px;
     font-family: "Space Grotesk", serif;
     color: white;
     background-color: black;
@@ -18,12 +18,18 @@ header {
     top: 0;
 }
 
+a {
+    text-decoration: none;
+}
+
 .card {
+    text-decoration: none;
     font-weight: 700;
     background-color: #0c0c0c;
     border: 1px solid #ffffff16;
     border-radius: 10px;
-    
+    color: white;
+
     padding: 20px;
     margin: 20px;
     width: 200px;
