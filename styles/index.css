@@ -9,8 +9,6 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
-    position: relative;
 }
 
 header {
@@ -59,9 +57,4 @@ a {
 .material-symbols-outlined {
     margin-bottom: 8px;
     color: grey;
-}
-
-footer {
-    position: absolute;
-    bottom: 4vh;
 }

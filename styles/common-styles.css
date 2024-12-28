@@ -1,3 +1,7 @@
+html {
+    position: relative;
+}
+
 .button-home {
     background-color: black;
     border: 1px solid white;
@@ -21,7 +25,7 @@
     background-color: white;
   }
 
-footer {
+#footer {
 position: absolute;
 bottom: 20px;
 color: white;
