@@ -75,7 +75,7 @@ body {
     row-gap: 1rem;
 }
 
-.career-timeline-checkpoint {
+.career-timeline-checkpoint, .button-cta {
     font-family: 'Acorn', sans-serif;
     background-color: var(--color-primary);
     padding: .7rem 1.5rem;
@@ -154,4 +154,24 @@ body {
     padding: .8rem 1.8rem;
     border-radius: 2rem;
     margin: .5rem .2rem .5rem .5rem;
+}
+
+footer {
+    width: 100%;
+}
+
+.button-cta {
+    margin: 6rem auto 2rem auto;
+    font-family: 'Acorn', sans-serif;
+    font-size: 2rem;
+    width: 20rem;
+    justify-content: center;
+    text-decoration: none;
+    background-color: black;
+    
+}
+
+.button-cta:hover {
+    background-color: white;
+    color: var(--color-primary);
 }
