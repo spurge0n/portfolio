@@ -1,15 +1,11 @@
 /* Styles for smaller screens (mobile) */
-
 @media (max-width: 768px) {
     .card-one {
         width: 70vw;
     }
 }
 
-
-
 /* Styles for larger screens (desktop) */
-
 @media (min-width: 768px) {
     .card-one {
         width: 20vw;
@@ -43,6 +39,7 @@ main {
     position: absolute;
     top: 0;
     left: 1rem;
+    font-size: 1.2rem;
     font-weight: 700;
 }
 
@@ -69,6 +66,7 @@ main {
         display: flex;
         flex-direction: column;
         row-gap: 1.5em;
+        box-shadow: .7rem .7rem 0 black;
     }
 
     .card-one-image {
