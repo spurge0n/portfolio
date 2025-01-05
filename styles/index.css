@@ -43,12 +43,12 @@ a {
     font-weight: 700;
     background-color: #0c0c0c;
     border: 1px solid #ffffff16;
-    border-radius: 10px;
+    border-radius: .6rem;
     color: white;
 
-    padding: 20px;
-    margin: 20px;
-    width: 200px;
+    padding: 1.2rem;
+    margin: 1.2rem;
+    width: 10rem;
     box-shadow: 0 14px 10px -10px rgb(32, 32, 32);
 
     cursor: pointer;
