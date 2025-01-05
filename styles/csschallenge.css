@@ -1,0 +1,114 @@
+/* Styles for smaller screens (mobile) */
+
+@media (max-width: 768px) {
+    .card-one {
+        width: 70vw;
+    }
+}
+
+
+
+/* Styles for larger screens (desktop) */
+
+@media (min-width: 768px) {
+    .card-one {
+        width: 20vw;
+    }
+}
+
+/* FONTS */
+@font-face {
+    font-family: 'Figtree';
+    src: url('/portfolio/media/css-challenge/day-one/fonts/Figtree-VariableFont_wght.ttf') format('truetype');
+  }
+
+body {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+main {
+    padding: 0;
+    padding-top: 5rem;
+    margin: 0;
+}
+
+.card {
+    position: relative;
+    width: 100%;
+}
+
+.card-title {
+    position: absolute;
+    top: 0;
+    left: 1rem;
+    font-weight: 700;
+}
+
+
+.card-one-container {
+    font-family: 'Figtree', sans-serif;
+    font-size: 13px;
+    background-color: #F5D04E;
+    padding-block: 2rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+    .card-one {
+        font-size: 1em;
+        /* max-width: 50vw; */
+        padding: 1.5em;
+        background-color: white;
+        border: 1px solid black;
+        border-radius: 1em;
+        display: flex;
+        flex-direction: column;
+        row-gap: 1.5em;
+    }
+
+    .card-one-image {
+        width: 100%;
+        object-fit: cover;
+        border-radius: .5em;
+    }
+
+    .card-one-tag span {
+        font-weight: 700;
+        padding: .3em 1em;
+        border-radius: .3em;
+        background-color: #F5D04E;
+        display: inline;
+    }
+
+    .card-one-heading {
+        font-weight: 700;
+        font-size: 1.6em;
+    }
+
+    .card-one-description {
+        color: darkgray;
+        line-height: 150%;
+    }
+
+    .card-one-dp-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: start;
+        column-gap: 1em;
+        align-items: center;
+    }
+
+    .card-one-dp {
+        width: 2.5em;
+        height: 2.5em;
+        /* border-radius: 50%; */
+    }
+
+    .card-one-dp-name {
+        font-weight: 700;
+    }

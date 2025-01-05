@@ -23,6 +23,15 @@ header {
     align-items: center;
 }
 
+main {
+    display: flex;
+    flex-direction: row;
+    width: min(100%, 800px);
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
 a {
     color: white;
     cursor: pointer;
