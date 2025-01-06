@@ -97,10 +97,83 @@ main {
         font-weight: 700;
     }
 
+
+.card-two-container {
+        font-family: 'Figtree', sans-serif;
+        font-size: 13px;
+        background-color: #F9EEFF;
+        padding-block: 5rem;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 15rem;
+    }
+    
+    .card-two-background {
+        background-image: url("/portfolio/media/css-challenge/day-two/assets/images/background-pattern-desktop.svg");
+        height: 40%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+    }
+
+input {
+    display: none;
+}
+
+label {
+    display: block;
+    background-color: red;
+    padding: 1rem 2rem;
+    margin: 0 0 1px 0;
+    cursor: pointer;
+    border-radius: .2rem;
+    color: white;
+    transition: ease .5s;
+}
+
+label:hover {
+    background-color: darkred;
+}
+
+.content {
+    background: red;
+    padding: 1rem 2rem;
+    border: 1px solid green;
+    margin: 0 0 1px 0;
+    border-radius: 3px;
+}
+
+input+label+.content {
+    display: none;
+}
+
+input:checked+label+.content {
+    display: block;
+}
+
+label::after {
+    content: url("/portfolio/media/css-challenge/day-two/assets/images/icon-plus.svg");
+}
+
+input:checked+label::after {
+    content: url("/portfolio/media/css-challenge/day-two/assets/images/icon-minus.svg");
+}
+
 /* Styles for smaller screens (mobile) */
 @media (max-width: 768px) {
     .card-one {
         width: 70vw;
+    }
+
+    .card-two-background {
+        background-image: url("/portfolio/media/css-challenge/day-two/assets/images/background-pattern-mobile.svg");
+    }
+
+    .card-two-container{
+        height: 40rem;
     }
 }
 
@@ -110,3 +183,4 @@ main {
         width: 20vw;
     }
 }
+
