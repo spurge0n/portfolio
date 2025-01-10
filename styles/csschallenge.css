@@ -131,6 +131,7 @@ label {
     color: black;
     transition: ease .5s;
     width: 40rem;
+    max-width: 60rem;
 }
 
 label:hover {
@@ -144,6 +145,7 @@ label:hover {
     margin: 0 0 1px 0;
     border-radius: 3px;
     width: 40rem;
+    max-width: 60rem;
 }
 
 input+label+.content {
