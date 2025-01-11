@@ -16,6 +16,8 @@ main {
     margin: 0;
 }
 
+/* --------- CARD #1 --------- */
+
 .card {
     position: relative;
     width: 100%;
@@ -95,6 +97,7 @@ main {
         font-weight: 700;
     }
 
+/* --------- CARD #2 --------- */
 
 .card-two-container {
         font-family: 'Figtree', sans-serif;
@@ -130,7 +133,7 @@ label {
     border-radius: .2rem;
     color: black;
     transition: ease .5s;
-    width: 40rem;
+    width: 20rem;
     max-width: 60rem;
 }
 
@@ -144,7 +147,7 @@ label:hover {
     border: 1px solid green;
     margin: 0 0 1px 0;
     border-radius: 3px;
-    width: 40rem;
+    width: 20rem;
     max-width: 60rem;
 }
 
@@ -163,6 +166,22 @@ label::after {
 input:checked+label::after {
     content: url("/portfolio/media/css-challenge/day-two/assets/images/icon-minus.svg");
 }
+
+.card-two-accordion {
+    width: 22rem;
+    padding: 1rem;
+    text-wrap: wrap;
+    background-color: white;
+    border-radius: .2rem;
+}
+
+.card-two-accordion {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+/* --------- RESPONSIVENESS STYLING --------- */
 
 /* Styles for smaller screens (mobile) */
 @media (max-width: 768px) {
@@ -186,3 +205,10 @@ input:checked+label::after {
     }
 }
 
+
+
+/* --------- COMMON STYLES --------- */
+
+.inline {
+    display: inline;
+}

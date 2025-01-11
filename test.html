@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Canvas Design App</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 20px;
+    }
+    .toolbar {
+      margin-bottom: 10px;
+    }
+    /* Simple styling for the canvas */
+    #designCanvas {
+      border: 2px dashed #ccc;
+      cursor: crosshair;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="toolbar">
+  <!-- Buttons to add shapes -->
+  <button onclick="addRectangle()">Add Rectangle</button>
+  <button onclick="addCircle()">Add Circle</button>
+  <button onclick="addText()">Add Text</button>
+
+  <!-- Image Upload -->
+  <label for="imageInput" style="cursor:pointer; color:blue; text-decoration:underline;">
+    Upload Image
+  </label>
+  <input 
+    type="file" 
+    id="imageInput" 
+    class="hidden" 
+    accept="image/*"
+    onchange="addImage(event)"
+  />
+
+  <!-- Export Button -->
+  <button onclick="exportAsHTML()">Export</button>
+</div>
+
+<!-- Canvas -->
+<canvas id="designCanvas" width="800" height="600"></canvas>
+
+<script>
+/************************************************************
+ * DATA STRUCTURES
+ *************************************************************/
+/**
+ * Each element (shape, text, image) will be stored as an object in 'shapes'.
+ * Possible 'type' values: 'rect', 'circle', 'text', 'image'.
+ * Example shape objects:
+ * { type: 'rect', x: 50, y: 50, w: 100, h: 70, color: '#f00' }
+ * { type: 'circle', x: 150, y: 150, r: 50, color: '#00f' }
+ * { type: 'text', x: 100, y: 100, text: "Hello", color: "#000", fontSize: 20 }
+ * { type: 'image', x: 200, y: 200, w: 150, h: 100, dataURL: 'base64...' }
+ */
+let shapes = [];
+
+// Variables for dragging
+let currentDragIndex = -1;
+let offsetX = 0;
+let offsetY = 0;
+
+/************************************************************
+ * CANVAS & CONTEXT
+ *************************************************************/
+const canvas = document.getElementById('designCanvas');
+const ctx = canvas.getContext('2d');
+
+// Mouse state
+let isDragging = false;
+
+/************************************************************
+ * EVENT LISTENERS FOR DRAGGING
+ *************************************************************/
+canvas.addEventListener('mousedown', onMouseDown);
+canvas.addEventListener('mousemove', onMouseMove);
+canvas.addEventListener('mouseup', onMouseUp);
+canvas.addEventListener('mouseleave', onMouseUp); // Stop drag if mouse leaves canvas
+
+/**
+ * Check if we clicked on a shape.
+ */
+function onMouseDown(e) {
+  const mousePos = getMousePos(e);
+  // Check from top to bottom so we select the topmost shape if overlapping
+  for (let i = shapes.length - 1; i >= 0; i--) {
+    if (isMouseOnShape(mousePos, shapes[i])) {
+      currentDragIndex = i;
+      isDragging = true;
+      offsetX = mousePos.x - shapes[i].x;
+      offsetY = mousePos.y - shapes[i].y;
+      break;
+    }
+  }
+}
+
+/**
+ * Move shape if dragging.
+ */
+function onMouseMove(e) {
+  if (!isDragging || currentDragIndex < 0) return;
+  const mousePos = getMousePos(e);
+  const shape = shapes[currentDragIndex];
+
+  shape.x = mousePos.x - offsetX;
+  shape.y = mousePos.y - offsetY;
+
+  drawAll();
+}
+
+/**
+ * Stop dragging.
+ */
+function onMouseUp() {
+  isDragging = false;
+  currentDragIndex = -1;
+}
+
+/**
+ * Utility: get mouse coordinates relative to canvas.
+ */
+function getMousePos(e) {
+  const rect = canvas.getBoundingClientRect();
+  return {
+    x: e.clientX - rect.left,
+    y: e.clientY - rect.top
+  };
+}
+
+/************************************************************
+ * HIT DETECTION
+ *************************************************************/
+function isMouseOnShape(mousePos, shape) {
+  if (shape.type === 'rect') {
+    return (
+      mousePos.x >= shape.x &&
+      mousePos.x <= shape.x + shape.w &&
+      mousePos.y >= shape.y &&
+      mousePos.y <= shape.y + shape.h
+    );
+  } else if (shape.type === 'circle') {
+    // Distance from center <= radius
+    const dx = mousePos.x - (shape.x);
+    const dy = mousePos.y - (shape.y);
+    const dist = Math.sqrt(dx * dx + dy * dy);
+    return dist <= shape.r;
+  } else if (shape.type === 'text') {
+    // Approximate text bounding box
+    ctx.font = shape.fontSize + 'px sans-serif';
+    const textWidth = ctx.measureText(shape.text).width;
+    const textHeight = shape.fontSize; // Roughly
+    return (
+      mousePos.x >= shape.x &&
+      mousePos.x <= shape.x + textWidth &&
+      mousePos.y >= shape.y - textHeight &&
+      mousePos.y <= shape.y
+    );
+  } else if (shape.type === 'image') {
+    return (
+      mousePos.x >= shape.x &&
+      mousePos.x <= shape.x + shape.w &&
+      mousePos.y >= shape.y &&
+      mousePos.y <= shape.y + shape.h
+    );
+  }
+  return false;
+}
+
+/************************************************************
+ * DRAWING
+ *************************************************************/
+function drawAll() {
+  // Clear canvas
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  // Draw each shape
+  for (let i = 0; i < shapes.length; i++) {
+    drawShape(shapes[i]);
+  }
+}
+
+function drawShape(shape) {
+  if (shape.type === 'rect') {
+    ctx.fillStyle = shape.color;
+    ctx.fillRect(shape.x, shape.y, shape.w, shape.h);
+  } else if (shape.type === 'circle') {
+    ctx.beginPath();
+    ctx.fillStyle = shape.color;
+    ctx.arc(shape.x, shape.y, shape.r, 0, 2 * Math.PI);
+    ctx.fill();
+  } else if (shape.type === 'text') {
+    ctx.fillStyle = shape.color;
+    ctx.font = shape.fontSize + 'px sans-serif';
+    // We'll assume (x, y) is the bottom-left corner of text
+    // so we shift the y by the font size
+    ctx.fillText(shape.text, shape.x, shape.y);
+  } else if (shape.type === 'image') {
+    const img = new Image();
+    img.src = shape.dataURL;
+    // Draw once image is loaded
+    img.onload = () => {
+      ctx.drawImage(img, shape.x, shape.y, shape.w, shape.h);
+    };
+    // If the image is already cached, we can draw immediately
+    if (img.complete) {
+      ctx.drawImage(img, shape.x, shape.y, shape.w, shape.h);
+    }
+  }
+}
+
+/************************************************************
+ * ADDING NEW ELEMENTS
+ *************************************************************/
+function addRectangle() {
+  const color = prompt("Rectangle color (e.g. '#ff0000'):", "#f00") || "#f00";
+  const w = parseInt(prompt("Width (px):", "100")) || 100;
+  const h = parseInt(prompt("Height (px):", "60")) || 60;
+  const newRect = {
+    type: 'rect',
+    x: 50,
+    y: 50,
+    w: w,
+    h: h,
+    color: color
+  };
+  shapes.push(newRect);
+  drawAll();
+}
+
+function addCircle() {
+  const color = prompt("Circle color (e.g. '#0000ff'):", "#00f") || "#00f";
+  const r = parseInt(prompt("Radius (px):", "40")) || 40;
+  const newCircle = {
+    type: 'circle',
+    x: 150,
+    y: 150,
+    r: r,
+    color: color
+  };
+  shapes.push(newCircle);
+  drawAll();
+}
+
+function addText() {
+  const txt = prompt("Text content:", "Hello Canvas!") || "Hello Canvas!";
+  const color = prompt("Text color (e.g. '#000'):", "#000") || "#000";
+  const size = parseInt(prompt("Font size (px):", "20")) || 20;
+  const newText = {
+    type: 'text',
+    x: 200,
+    y: 200,
+    text: txt,
+    color: color,
+    fontSize: size
+  };
+  shapes.push(newText);
+  drawAll();
+}
+
+function addImage(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const dataURL = e.target.result;
+    // Let's just use a default width of 150, height 100
+    // You could prompt the user or load the image to see actual dims
+    const newImage = {
+      type: 'image',
+      x: 300,
+      y: 300,
+      w: 150,
+      h: 100,
+      dataURL: dataURL
+    };
+    shapes.push(newImage);
+    drawAll();
+    document.getElementById('imageInput').value = ""; // reset input
+  };
+  reader.readAsDataURL(file);
+}
+
+/************************************************************
+ * EXPORT - GENERATE HTML WITH SCRIPT
+ *************************************************************/
+/**
+ * We'll create a minimal HTML that includes:
+ * 1) A <canvas> with the same width & height.
+ * 2) An inline <script> containing the shapes array.
+ * 3) The same draw logic to reconstruct the design.
+ */
+function exportAsHTML() {
+  const exportShapes = JSON.stringify(shapes);
+
+  const exportedHTML = `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Exported Canvas Design</title>
+  <style>
+    body { margin: 20px; font-family: sans-serif; }
+    #exportCanvas {
+      border: 2px dashed #ccc;
+    }
+  </style>
+</head>
+<body>
+<canvas id="exportCanvas" width="800" height="600"></canvas>
+
+<script>
+  // Re-create the shapes array from JSON
+  let shapes = ${exportShapes};
+
+  const canvas = document.getElementById('exportCanvas');
+  const ctx = canvas.getContext('2d');
+
+  // Redraw everything once the page loads
+  window.onload = function() {
+    drawAll();
+  };
+
+  function drawAll() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (let i = 0; i < shapes.length; i++) {
+      drawShape(shapes[i]);
+    }
+  }
+
+  function drawShape(shape) {
+    if (shape.type === 'rect') {
+      ctx.fillStyle = shape.color;
+      ctx.fillRect(shape.x, shape.y, shape.w, shape.h);
+    } else if (shape.type === 'circle') {
+      ctx.beginPath();
+      ctx.fillStyle = shape.color;
+      ctx.arc(shape.x, shape.y, shape.r, 0, 2 * Math.PI);
+      ctx.fill();
+    } else if (shape.type === 'text') {
+      ctx.fillStyle = shape.color;
+      ctx.font = shape.fontSize + 'px sans-serif';
+      ctx.fillText(shape.text, shape.x, shape.y);
+    } else if (shape.type === 'image') {
+      let img = new Image();
+      img.src = shape.dataURL;
+      img.onload = () => {
+        ctx.drawImage(img, shape.x, shape.y, shape.w, shape.h);
+      };
+      if (img.complete) {
+        ctx.drawImage(img, shape.x, shape.y, shape.w, shape.h);
+      }
+    }
+  }
+</script>
+</body>
+</html>
+  `;
+
+  // Prompt user to download this as an .html file
+  const blob = new Blob([exportedHTML], { type: "text/html" });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = "exported_canvas_design.html";
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+</script>
+</body>
+</html>
