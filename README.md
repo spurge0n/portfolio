@@ -17,3 +17,5 @@ Resources gathered:
 December:
 - Started learning Javascript from Super Simple Dev (~22.5 Hr video): https://www.youtube.com/watch?v=EerdGm-ehJQ&ab_channel=SuperSimpleDev
 - Practising UI design of a login page: https://dribbble.com/shots/24552589-Login-Sign-up-Dark-Mode-UI-UX-Design
+
+Testing
