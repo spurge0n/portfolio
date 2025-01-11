@@ -175,10 +175,17 @@ input:checked+label::after {
     border-radius: .2rem;
 }
 
-.card-two-accordion {
+.card-two-accordion-question {
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.card-two-accordion-question::after {
+    content: url("/portfolio/media/css-challenge/day-two/assets/images/icon-minus.svg");
 }
 
 /* --------- RESPONSIVENESS STYLING --------- */
